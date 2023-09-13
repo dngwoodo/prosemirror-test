@@ -116,3 +116,28 @@ const state = EditorState.create({
 
 const view = new EditorView(document.body, { state });
 ```
+
+## Commands
+
+이전 예제에서 키에 바인딩된 undo 및 redo 값은 명령이라는 특별한 종류의 함수이다. 대부분의 편집 작업은 키에 바인딩되거나 메뉴에 연결되거나 사용자에게 표시될 수 있는 명령으로 작성된다.
+
+prosemirror-commands 패키지는 편집기에서 입력 및 삭제와 같은 작업이 예상되는 작업을 수행하도록 활성화하려는 최소 키맵과 함께 여러 가지 기본 편집 명령을 제공한다.
+
+```ts
+// (Omitted repeated imports)
+import { baseKeymap } from "prosemirror-commands";
+
+let state = EditorState.create({
+  schema,
+  plugins: [
+    history(),
+    keymap({"Mod-z": undo, "Mod-y": redo}),
+    keymap(baseKeymap)
+  ]
+})
+
+let view = new EditorView(document.body, { state })
+```
+
+[prosemirror-example-setup](https://github.com/prosemirror/prosemirror-example-setup) 해당 프로젝트를 살펴보면 도움이 된다.
+
