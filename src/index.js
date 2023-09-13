@@ -22,4 +22,14 @@ window.view = new EditorView(document.querySelector("#editor"), {
     ),
     plugins: exampleSetup({ schema: mySchema }),
   }),
+  dispatchTransaction(transaction) {
+    console.log(
+      "Document size went from",
+      transaction.before.content.size,
+      "to",
+      transaction.doc.content.size,
+    );
+    const newState = view.state.apply(transaction);
+    view.updateState(newState);
+  },
 });
