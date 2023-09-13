@@ -87,3 +87,32 @@ let view = new EditorView(document.body, {
 사용자가 뷰에 입력하거나 다른 방식으로 상호 작용하면 상태 트랜잭션'이 생성된다. 변경할 때마다 상태 변경 사항을 설명하는 트랜잭션이 생성되며, 이 트랜잭션을 적용하여 새 상태를 만든 다음 뷰를 업데이트하는 데 사용할 수 있다.
 
 기본적으로 이 모든 작업은 은밀하게 이루어지지만 플러그인을 작성하거나 뷰를 구성하여 연결할 수 있다. 예를 들어, 이 코드는 트랜잭션이 생성될 때마다 호출되는 dispatchTransaction 프로퍼티를 추가한다.
+
+### Plugins
+플러그인은 편집기와 편집기 상태의 동작을 다양한 방식으로 확장하는 데 사용된다.
+
+이 두 플러그인을 에디터에 추가하여 실행 취소/다시 실행 기능을 추가해 보자.
+
+```ts
+// (Omitted repeated imports)
+import { undo, redo, history } from "prosemirror-history";
+import { keymap } from "prosemirror-keymap";
+
+const state = EditorState.create({
+  schema,
+  plugins: [
+    /**
+     * NOTE
+     *  트랜잭션을 관찰하고 역으로 저장하여 취소 기록을 구현하는 히스토리 플러그인
+     */
+    history(), 
+    /**
+     * NOTE
+     * 키보드 입력에 바인딩하는 키맵 플러그인
+     */
+    keymap({ "Mod-z": undo, "Mod-y": redo })
+  ],
+});
+
+const view = new EditorView(document.body, { state });
+```
