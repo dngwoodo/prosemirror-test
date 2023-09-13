@@ -1,0 +1,72 @@
+#editor {
+  background: white;
+  color: black;
+  background-clip: padding-box;
+  border-radius: 4px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 0;
+  margin-bottom: 23px;
+}
+
+.ProseMirror-menubar {
+  min-height: 27px !important;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  position: relative;
+  color: #666;
+  padding: 1px 6px;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid silver;
+  background: white;
+  z-index: 10;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.ProseMirror-menuitem {
+  margin-right: 3px;
+  display: inline-block;
+}
+
+.ProseMirror {
+  padding: 4px 8px 4px 14px;
+  line-height: 1.2;
+  outline: none;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  -webkit-font-variant-ligatures: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
+  position: relative;
+}
+
+.ProseMirror-menuseparator {
+  border-right: 1px solid #ddd;
+  margin-right: 3px;
+}
+
+.ProseMirror-icon {
+  display: inline-block;
+  line-height: .8;
+  vertical-align: -2px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.ProseMirror-icon svg {
+  fill: currentColor;
+  height: 1em;
+}
+
+.ProseMirror-menu-active {
+  background: #eee;
+  border-radius: 4px;
+}
+
+.ProseMirror-selectednode {
+  outline: 2px solid #8cf;
+}

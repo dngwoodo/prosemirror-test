@@ -1,0 +1,33 @@
+{
+  "name": "prose-mirror-test",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild --bundle src/index.js --outfile=dist/bundle.js --loader:.html=text",
+    "start": "pnpm build --servedir=dist --serve=9000",
+    "watch": "pnpm start --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.9",
+    "esbuild": "0.19.2",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3",
+    "prosemirror-example-setup": "^1.2.2",
+    "prosemirror-model": "^1.19.3",
+    "prosemirror-schema-basic": "^1.2.2",
+    "prosemirror-schema-list": "^1.3.0",
+    "prosemirror-state": "^1.4.3",
+    "prosemirror-transform": "^1.7.5",
+    "prosemirror-view": "^1.31.8"
+  },
+  "devDependencies": {
+    "eslint": "^8.49.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
