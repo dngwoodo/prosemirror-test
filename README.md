@@ -117,7 +117,7 @@ const state = EditorState.create({
 const view = new EditorView(document.body, { state });
 ```
 
-## Commands
+### Commands
 
 이전 예제에서 키에 바인딩된 undo 및 redo 값은 명령이라는 특별한 종류의 함수이다. 대부분의 편집 작업은 키에 바인딩되거나 메뉴에 연결되거나 사용자에게 표시될 수 있는 명령으로 작성된다.
 
@@ -141,3 +141,24 @@ let view = new EditorView(document.body, { state })
 
 [prosemirror-example-setup](https://github.com/prosemirror/prosemirror-example-setup) 해당 프로젝트를 살펴보면 도움이 된다.
 
+### Content
+
+상태의 document 는 doc 속성 아래에 있다.이는 브라우저 DOM과 유사한 노드 계층 구조로 document 를 나타내는 읽기 전용 데이터 구조이다. 간단한 document 는 각각 단일 'text' 노드를 포함하는 두 개의 'paragraph' 노드를 포함하는 'doc' 노드일 수 있다.
+
+```ts
+import { DOMParser } from "prosemirror-model";
+import { EditorState } from "prosemirror-state";
+import { schema } from "prosemirror-schema-basic";
+
+let content = document.getElementById("content");
+
+let state = EditorState.create({
+  /**
+   * NOTE
+   * content 요소에서 발견된 컨텐트를 구문분석하여 상태를 초기화한다.
+   */
+  doc: DOMParser.fromSchema(schema).parse(content)
+});
+```
+
+상태를 초기화할 때 사용할 초기 document 를 제공할 수 있다. 이 경우 스키마를 document 에서 가져올 수 있으므로 스키마 필드는 선택 사항이다.여기서는 어떤 DOM 노드가 해당 스키마의 어떤 요소에 매핑되는지에 대해 스키마에서 제공하는 정보를 사용하는 DOM 구문 분석기 메커니즘을 사용하여 ID가 ​​'content'인 DOM 요소에서 발견된 콘텐츠를 구문 분석하여 상태를 초기화한다.
